@@ -1,0 +1,6 @@
+framework module Pods_viper_mufiid_viper_mufiidUITests {
+  umbrella header "Pods-viper-mufiid-viper-mufiidUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
