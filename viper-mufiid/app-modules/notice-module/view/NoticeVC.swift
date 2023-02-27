@@ -34,7 +34,9 @@ extension NoticeVC: PresenterToViewProtocol {
     func showNoticeError(message: String) {
         hideProgressIndicator(view: view)
         let alert = UIAlertController(title: "Terjadi Kesalahan", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default) { _ in
+            self.presenter?.showMovieController(message)
+        })
         present(alert, animated: true, completion: nil)
     }
 }
@@ -54,7 +56,7 @@ extension NoticeVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.showMovieController(navigationController: navigationController!)
+        presenter?.showMovieController("On Click")
     }
 }
 

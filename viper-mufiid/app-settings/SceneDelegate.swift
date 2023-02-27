@@ -22,7 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene: UIWindowScene = scene as? UIWindowScene {
             window = UIWindow(windowScene: windowScene)
             let notice = NoticeRouter.createModule()
-            window?.rootViewController = notice
+            let navigationController = UINavigationController()
+            navigationController.viewControllers = [notice]
+            window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
         }
     }

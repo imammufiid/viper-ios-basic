@@ -10,6 +10,7 @@ import UIKit
 
 /* Getting data from user action and send it to interactor or navigate to other screen */
 class NoticePresenter: ViewToPresenterProtocol {
+   
     var view: PresenterToViewProtocol?
     
     var interactor: PresenterToInteractorProtocol?
@@ -20,8 +21,8 @@ class NoticePresenter: ViewToPresenterProtocol {
         interactor?.fetchNotice()
     }
     
-    func showMovieController(navigationController: UINavigationController) {
-        router?.pushToMovieScreen(navigationController: navigationController)
+    func showMovieController(_ title: String) {
+        router?.pushToMovieScreen(title)
     }
 }
 

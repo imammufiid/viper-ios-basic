@@ -2,8 +2,6 @@
 //  NoticeProtocols.swift
 //  viper-mufiid
 //
-//  Created by dios on 26/02/23.
-//
 
 import Foundation
 import UIKit
@@ -13,7 +11,7 @@ protocol ViewToPresenterProtocol: AnyObject {
     var interactor: PresenterToInteractorProtocol? { get set }
     var router: PresenterToRouterProtocol? { get set }
     func startFetchingNotice()
-    func showMovieController(navigationController: UINavigationController)
+    func showMovieController(_ title: String)
 }
 
 protocol PresenterToViewProtocol: AnyObject {
@@ -22,8 +20,9 @@ protocol PresenterToViewProtocol: AnyObject {
 }
 
 protocol PresenterToRouterProtocol: AnyObject {
+    var viewController: NoticeVC? { get set }
     static func createModule() -> NoticeVC
-    func pushToMovieScreen(navigationController: UINavigationController)
+    func pushToMovieScreen(_ title: String)
 }
 
 protocol PresenterToInteractorProtocol: AnyObject {

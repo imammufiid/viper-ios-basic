@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class NoticeRouter: PresenterToRouterProtocol {
+    var viewController: NoticeVC?
+    
     static func createModule() -> NoticeVC {
         let view = mainStoryboard.instantiateViewController(withIdentifier: "NoticeVC") as! NoticeVC
         let presenter: ViewToPresenterProtocol & InteractorToPresenterProtocol = NoticePresenter()
@@ -16,6 +18,7 @@ class NoticeRouter: PresenterToRouterProtocol {
         let router: PresenterToRouterProtocol = NoticeRouter()
 
         view.presenter = presenter
+        router.viewController = view
         presenter.view = view
         presenter.router = router
         presenter.interactor = interactor
@@ -23,9 +26,10 @@ class NoticeRouter: PresenterToRouterProtocol {
         return view
     }
 
-    func pushToMovieScreen(navigationController: UINavigationController) {
-//        let movieModue = MovieRouter.createMovieModule()
-//        navigationController.pushViewController(movieModue,animated: true)
+    func pushToMovieScreen(_ title: String) {
+        let movieModule = MovieRouter.createModule()
+        movieModule.myTitle = title
+        viewController?.navigationController?.pushViewController(movieModule, animated: true)
     }
 
     static var mainStoryboard: UIStoryboard {
